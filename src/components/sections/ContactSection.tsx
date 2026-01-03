@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -38,12 +38,24 @@ const contactInfo = [
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleCopy = async (value: string, label: string) => {
+    const cleanValue = value.replace(/\s/g, "").replace("+91", "+91");
+    await navigator.clipboard.writeText(label === "Phone" ? "+919503250303" : value);
+    setCopiedField(label);
+    toast({
+      title: "Copied!",
+      description: `${label} copied to clipboard`,
+    });
+    setTimeout(() => setCopiedField(null), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,17 +148,32 @@ const ContactSection = () => {
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <info.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{info.label}</p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="text-foreground hover:text-primary transition-colors"
+                    <div className="flex items-center gap-2">
+                      <div>
+                        <p className="text-sm text-muted-foreground">{info.label}</p>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            className="text-foreground hover:text-primary transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-foreground">{info.value}</p>
+                        )}
+                      </div>
+                      {(info.label === "Email" || info.label === "Phone") && (
+                        <button
+                          onClick={() => handleCopy(info.value, info.label)}
+                          className="p-1.5 rounded-md hover:bg-primary/10 transition-colors text-muted-foreground hover:text-primary"
+                          aria-label={`Copy ${info.label}`}
                         >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-foreground">{info.value}</p>
+                          {copiedField === info.label ? (
+                            <Check className="w-4 h-4 text-green-500" />
+                          ) : (
+                            <Copy className="w-4 h-4" />
+                          )}
+                        </button>
                       )}
                     </div>
                   </div>
