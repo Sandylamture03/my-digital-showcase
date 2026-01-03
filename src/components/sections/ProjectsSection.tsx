@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ProjectsSection = () => {
@@ -12,7 +11,8 @@ const ProjectsSection = () => {
         .from("projects")
         .select("*")
         .order("featured", { ascending: false })
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(4);
       
       if (error) throw error;
       return data;
@@ -120,15 +120,6 @@ const ProjectsSection = () => {
           </div>
         )}
 
-        <div className="text-center mt-12">
-          <Button
-            variant="outline"
-            className="border-primary/50 hover:bg-primary/10"
-          >
-            View All Projects
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
       </div>
     </section>
   );
