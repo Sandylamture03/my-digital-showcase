@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -76,11 +77,12 @@ const Navbar = () => {
             className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
             asChild
           >
-            <a href="/resume.pdf" download>
+            <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
           </Button>
+          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -113,15 +115,18 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button
-              className="bg-gradient-to-r from-primary to-accent hover:opacity-90 mt-4"
-              asChild
-            >
-              <a href="/resume.pdf" download>
-                <Download className="w-4 h-4 mr-2" />
-                Resume
-              </a>
-            </Button>
+            <div className="flex items-center gap-4 mt-4">
+              <Button
+                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 flex-1"
+                asChild
+              >
+                <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
+                  <Download className="w-4 h-4 mr-2" />
+                  Resume
+                </a>
+              </Button>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       )}
