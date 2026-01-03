@@ -119,13 +119,13 @@ const HeroSection = () => {
 
           <div className="flex items-center justify-center gap-6">
             <a
-              href="mailto:sandeeplamture@gmail.com"
+              href="mailto:sandylamture03@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               <Mail size={24} />
             </a>
             <a
-              href="https://linkedin.com/in/sandeeplamture"
+              href="https://www.linkedin.com/in/sandeep-lamture-00ba4779/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -133,7 +133,7 @@ const HeroSection = () => {
               <Linkedin size={24} />
             </a>
             <a
-              href="https://github.com/sandeeplamture"
+              href="https://github.com/Sandylamture03"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"

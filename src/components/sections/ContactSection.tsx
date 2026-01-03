@@ -18,14 +18,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "sandeeplamture@gmail.com",
-    href: "mailto:sandeeplamture@gmail.com",
+    value: "sandylamture03@gmail.com",
+    href: "mailto:sandylamture03@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 95032 50303",
+    href: "tel:+919503250303",
   },
   {
     icon: MapPin,
