@@ -16,21 +16,21 @@ const Footer = () => {
 
           <div className="flex items-center gap-6">
             <a
-              href="mailto:sandeeplamture@gmail.com"
+              href="mailto:sandylamture03@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >
               <Mail size={20} />
             </a>
             <a
-              href="tel:+919876543210"
+              href="tel:+919503250303"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Phone"
             >
               <Phone size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/sandeeplamture"
+              href="https://www.linkedin.com/in/sandeep-lamture-00ba4779/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -39,7 +39,7 @@ const Footer = () => {
               <Linkedin size={20} />
             </a>
             <a
-              href="https://github.com/sandeeplamture"
+              href="https://github.com/Sandylamture03"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
