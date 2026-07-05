@@ -84,7 +84,7 @@ const HeroSection = () => {
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Hi, I'm{" "}
-            <span className="gradient-text">Sandeep Lamture</span>
+            <span className="gradient-text">Sandeep Lamture</span> — React Developer
           </h1>
 
           <div className="h-12 md:h-16 mb-8">
