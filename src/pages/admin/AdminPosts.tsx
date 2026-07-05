@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { format } from "date-fns";
 import { Plus, Pencil, Trash2, LogOut, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import ResumeUploader from "@/components/admin/ResumeUploader";
 
 export default function AdminPosts() {
   const navigate = useNavigate();
@@ -52,6 +53,8 @@ export default function AdminPosts() {
             <Button variant="ghost" onClick={handleSignOut}><LogOut className="w-4 h-4 mr-2" />Sign out</Button>
           </div>
         </div>
+        <ResumeUploader />
+
 
         {isLoading ? (
           <p className="text-muted-foreground">Loading…</p>

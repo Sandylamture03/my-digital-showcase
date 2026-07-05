@@ -4,6 +4,7 @@ import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
+import { supabase } from "@/integrations/supabase/client";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -18,7 +19,17 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState<string>("/resume.pdf");
   const location = useLocation();
+
+  useEffect(() => {
+    supabase
+      .from("site_settings")
+      .select("value")
+      .eq("key", "resume_url")
+      .maybeSingle()
+      .then(({ data }) => { if (data?.value) setResumeUrl(data.value); });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,7 +89,7 @@ const Navbar = () => {
             className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
             asChild
           >
-            <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
+            <a href={resumeUrl} download="Sandeep_Lamture_Resume.pdf" target="_blank" rel="noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -123,7 +134,7 @@ const Navbar = () => {
                 className="bg-gradient-to-r from-primary to-accent hover:opacity-90 flex-1"
                 asChild
               >
-                <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
+                <a href={resumeUrl} download="Sandeep_Lamture_Resume.pdf" target="_blank" rel="noreferrer">
                   <Download className="w-4 h-4 mr-2" />
                   Resume
                 </a>
