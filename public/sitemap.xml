@@ -11,6 +11,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://portfolio.lamsan.online/blog/building-scalable-react-applications</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://portfolio.lamsan.online/blog/beyond-the-chatbox-how-claude-code-is-moving-ai-directly-into-your-terminal</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://portfolio.lamsan.online/blog/from-codex-to-chatgpt-the-evolution-of-ai-driven-programming</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://portfolio.lamsan.online/blog/typescript-best-practices-2024</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -18,12 +36,6 @@
   </url>
   <url>
     <loc>https://portfolio.lamsan.online/blog/mastering-tailwindcss</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://portfolio.lamsan.online/blog/building-scalable-react-applications</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
