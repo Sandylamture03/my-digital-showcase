@@ -12,7 +12,7 @@ const ProjectsSection = () => {
         .select("*")
         .order("featured", { ascending: false })
         .order("created_at", { ascending: false })
-        .limit(4);
+        .limit(6);
       
       if (error) throw error;
       return data;
