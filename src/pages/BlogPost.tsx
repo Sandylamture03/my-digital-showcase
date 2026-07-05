@@ -181,9 +181,16 @@ const BlogPost = () => {
                     {post.excerpt}
                   </p>
 
-                  <div className="prose prose-invert max-w-none">
-                    {renderContent(post.content)}
-                  </div>
+                  {/^\s*</.test(post.content) ? (
+                    <div
+                      className="prose prose-invert max-w-none"
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                  ) : (
+                    <div className="prose prose-invert max-w-none">
+                      {renderContent(post.content)}
+                    </div>
+                  )}
                 </div>
               </article>
             )}
