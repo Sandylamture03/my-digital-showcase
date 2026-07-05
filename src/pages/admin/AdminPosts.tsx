@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { format } from "date-fns";
 import { Plus, Pencil, Trash2, LogOut, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import ResumeUploader from "@/components/admin/ResumeUploader";
 
 export default function AdminPosts() {
   const navigate = useNavigate();
