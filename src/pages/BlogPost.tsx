@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
