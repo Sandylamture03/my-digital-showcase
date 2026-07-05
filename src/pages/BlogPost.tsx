@@ -32,10 +32,11 @@ const BlogPost = () => {
     const lines = content.split("\n");
     return lines.map((line, index) => {
       if (line.startsWith("# ")) {
+        // Render markdown level-1 headings as H2 to avoid multiple H1s on the page.
         return (
-          <h1 key={index} className="text-3xl font-bold mt-8 mb-4 gradient-text">
+          <h2 key={index} className="text-3xl font-bold mt-8 mb-4 gradient-text">
             {line.substring(2)}
-          </h1>
+          </h2>
         );
       }
       if (line.startsWith("## ")) {
