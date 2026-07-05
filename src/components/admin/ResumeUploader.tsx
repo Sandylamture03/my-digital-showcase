@@ -27,8 +27,14 @@ export default function ResumeUploader() {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    if (file.type !== "application/pdf") { toast.error("PDF only"); return; }
-    if (file.size > 10 * 1024 * 1024) { toast.error("Max 10MB"); return; }
+    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+      toast.error("Please upload a PDF file.");
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Resume must be 10 MB or smaller.");
+      return;
+    }
 
     setUploading(true);
     try {
