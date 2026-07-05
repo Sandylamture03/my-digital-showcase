@@ -1,17 +1,41 @@
 import { Code2, Palette, Zap, Users } from "lucide-react";
 
 const skills = {
-  Frontend: ["React.js", "TypeScript", "JavaScript", "Redux", "TailwindCSS", "HTML5", "CSS3", "SCSS"],
-  Tools: ["Git", "GitHub", "VS Code", "Chrome DevTools", "Webpack", "Vite", "npm/yarn"],
-  APIs: ["REST APIs", "GraphQL", "Axios", "React Query", "WebSockets"],
-  Cloud: ["AWS (Basic)", "Firebase", "Vercel", "Netlify"],
+  "Frontend": [
+    "React.js", "Redux", "React Hooks", "JavaScript ES6+", "TypeScript",
+    "HTML5", "CSS3", "TailwindCSS", "Bootstrap",
+  ],
+  "Tools & Build": [
+    "Webpack", "Babel", "npm", "Yarn", "Git", "GitHub", "GitLab", "VS Code",
+    "Jest", "Enzyme",
+  ],
+  "APIs & Backend": [
+    "REST APIs", "AJAX", "JSON", "Axios", "Fetch API", "GraphQL",
+  ],
+  "UI/UX & Design": [
+    "Responsive Design", "Cross-Browser Compatibility", "Mobile-First",
+    "Figma", "Adobe XD", "Accessibility (WCAG)",
+  ],
+  "Performance": [
+    "Code Splitting", "Lazy Loading", "Performance Testing",
+    "SEO Optimization", "Web Vitals",
+  ],
+  "Cloud & DevOps": [
+    "AWS", "Netlify", "Vercel", "CI/CD", "Docker", "Kubernetes",
+  ],
+  "Testing": [
+    "Unit Testing", "Integration Testing", "Jest", "React Testing Library",
+  ],
+  "AI Tools": [
+    "GitHub Copilot", "Gemini Developer Studio", "Cursor",
+  ],
 };
 
 const stats = [
   { label: "Years Experience", value: "4+", icon: Code2 },
   { label: "Bug Reduction", value: "70%", icon: Zap },
   { label: "Performance Boost", value: "35%", icon: Palette },
-  { label: "Projects Delivered", value: "20+", icon: Users },
+  { label: "UI Components", value: "15+", icon: Users },
 ];
 
 const AboutSection = () => {
@@ -27,26 +51,29 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Profile Info */}
           <div className="space-y-6">
             <div className="glass rounded-2xl p-8">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                I'm a <span className="text-primary font-semibold">React Developer</span> with 
-                over 4 years of experience building scalable, high-performance web applications. 
-                Currently working at <span className="text-accent font-semibold">Tata Consultancy Services</span>, 
-                where I develop enterprise solutions that serve millions of users.
+                I'm a dynamic <span className="text-primary font-semibold">React Developer</span> with
+                4 years of experience, known for pioneering user interface innovations and boosting
+                team performance through modern development methods. Currently at{" "}
+                <span className="text-accent font-semibold">Tata Consultancy Services</span>, I build
+                responsive, high-quality web applications that deliver outstanding user experiences.
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground mt-4">
-                My expertise lies in creating intuitive user interfaces, optimizing application 
-                performance, and implementing robust state management solutions. I'm passionate 
-                about clean code, modern development practices, and continuous learning.
+                I specialize in React.js, JavaScript, and modern CSS, with a focus on optimizing
+                application performance, streamlining workflows, and championing coding best
+                practices. I'm dedicated to incorporating the latest technologies and improving
+                accessibility, ensuring development consistently aligns with business goals and
+                drives user engagement.
               </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="glass rounded-xl p-6 text-center group hover:glow-primary transition-shadow"

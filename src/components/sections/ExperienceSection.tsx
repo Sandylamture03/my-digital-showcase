@@ -2,32 +2,33 @@ import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experiences = [
   {
-    company: "Tata Consultancy Services (TCS)",
+    company: "Tata Consultancy Services",
     role: "React Developer",
     period: "Oct 2022 - Present",
     location: "Pune, India",
     description: [
-      "Developed and maintained scalable React applications for enterprise clients",
-      "Implemented Redux Toolkit for efficient state management across complex applications",
-      "Reduced bug occurrences by 70% through comprehensive testing strategies",
-      "Optimized application performance by 35% using code splitting and lazy loading",
-      "Collaborated with cross-functional teams to deliver features on tight deadlines",
+      "Partnered with designers, back-end developers, and product managers to build, test, and maintain 15+ UI components, ensuring responsive performance across major devices and browsers.",
+      "Designed and implemented reusable React.js components and custom hooks, improving code modularity and reducing development time by 30%.",
+      "Optimized system performance through code splitting, lazy loading, and profiling, reducing page load time by 35% across Chrome, Firefox, Safari, and Edge.",
+      "Led bug fixing and performance tuning with Jest and React Testing Library, resulting in a 70% reduction in production bugs.",
+      "Conducted thorough code reviews, enforcing React best practices and clean code principles, improving overall code quality by 40%.",
+      "Applied responsive design with TailwindCSS and Bootstrap to deliver pixel-perfect UI across 10+ breakpoints, improving mobile usability by an estimated 25%.",
     ],
-    technologies: ["React.js", "TypeScript", "Redux Toolkit", "TailwindCSS", "REST APIs"],
+    technologies: ["React.js", "TypeScript", "Redux", "TailwindCSS", "Jest", "REST APIs"],
   },
   {
-    company: "Randstad",
-    role: "Frontend Developer",
+    company: "Randstad India",
+    role: "Front End Developer",
     period: "Sep 2021 - Sep 2022",
     location: "Pune, India",
     description: [
-      "Built responsive web applications using React.js and modern JavaScript",
-      "Integrated RESTful APIs and GraphQL endpoints for data management",
-      "Implemented reusable component libraries for consistent UI across projects",
-      "Participated in code reviews and mentored junior developers",
-      "Contributed to improving development workflows and best practices",
+      "Developed responsive landing pages and web applications using HTML5, CSS3, JavaScript, and React.js, improving engagement by an estimated 20%.",
+      "Accelerated the team's transition to modern front-end development as an early React.js adopter, improving workflow and component reusability by an estimated 25%.",
+      "Implemented modern front-end tooling with Webpack, Babel, and npm scripts, streamlining developer workflows by 20%.",
+      "Delivered consistent experiences across Chrome, Firefox, Safari, Edge, and IE, reducing browser-specific issues by an estimated 30%.",
+      "Integrated front-end components with RESTful APIs using AJAX and Fetch API, reducing integration issues by an estimated 20%.",
     ],
-    technologies: ["React.js", "JavaScript", "CSS3", "GraphQL", "Git"],
+    technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Webpack", "REST APIs"],
   },
 ];
 
