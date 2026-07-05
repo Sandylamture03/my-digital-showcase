@@ -25,13 +25,23 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Sandeep Lamture's Web Development Blog — React, TypeScript & More</title>
+        <meta
+          name="description"
+          content="Articles and tutorials by Sandeep Lamture on React, TypeScript, performance, and modern full-stack web development."
+        />
+        <link rel="canonical" href="https://portfolio.lamsan.online/blog" />
+        <meta property="og:title" content="Sandeep Lamture's Web Development Blog" />
+        <meta property="og:url" content="https://portfolio.lamsan.online/blog" />
+      </Helmet>
       <Navbar />
       
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              My <span className="gradient-text">Blog</span>
+              Sandeep Lamture's Web Development <span className="gradient-text">Blog</span>
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Thoughts, tutorials, and insights about web development, React, and software engineering
