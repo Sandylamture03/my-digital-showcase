@@ -57,7 +57,7 @@ const AboutSection = () => {
             <div className="glass rounded-2xl p-8">
               <p className="text-lg leading-relaxed text-muted-foreground">
                 I'm a dynamic <span className="text-primary font-semibold">React Developer</span> with
-                4 years of experience, known for pioneering user interface innovations and boosting
+                4+ years of experience, known for pioneering user interface innovations and boosting
                 team performance through modern development methods. Currently at{" "}
                 <span className="text-accent font-semibold">Tata Consultancy Services</span>, I build
                 responsive, high-quality web applications that deliver outstanding user experiences.
