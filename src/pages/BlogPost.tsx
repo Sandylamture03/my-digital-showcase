@@ -64,9 +64,39 @@ const BlogPost = () => {
     });
   };
 
+  const canonicalUrl = slug ? `https://portfolio.lamsan.online/blog/${slug}` : "https://portfolio.lamsan.online/blog";
+  const pageTitle = post ? `${post.title} — Sandeep Lamture` : "Blog post — Sandeep Lamture";
+  const pageDescription = post?.excerpt
+    ? post.excerpt.slice(0, 158)
+    : "Read the latest article from Sandeep Lamture on React, TypeScript, and modern web development.";
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        {post && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: post.title,
+              description: post.excerpt,
+              author: { "@type": "Person", name: "Sandeep Lamture" },
+              datePublished: post.created_at,
+              dateModified: post.updated_at,
+              mainEntityOfPage: canonicalUrl,
+            })}
+          </script>
+        )}
+      </Helmet>
       <Navbar />
+      
       
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
