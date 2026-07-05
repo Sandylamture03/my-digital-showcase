@@ -53,6 +53,8 @@ export default function AdminPosts() {
             <Button variant="ghost" onClick={handleSignOut}><LogOut className="w-4 h-4 mr-2" />Sign out</Button>
           </div>
         </div>
+        <ResumeUploader />
+
 
         {isLoading ? (
           <p className="text-muted-foreground">Loading…</p>
