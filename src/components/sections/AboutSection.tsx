@@ -27,7 +27,7 @@ const skills = {
     "Unit Testing", "Integration Testing", "Jest", "React Testing Library",
   ],
   "AI Tools": [
-    "GitHub Copilot", "Gemini Developer Studio", "Cursor",
+    "GitHub Copilot", "Gemini Developer Studio", "Cursor", "Claude", "Codex",
   ],
 };
 
