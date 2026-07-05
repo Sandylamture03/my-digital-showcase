@@ -125,7 +125,7 @@ export default function AdminPostEditor() {
               const file = e.target.files?.[0];
               e.target.value = "";
               if (!file) return;
-              if (file.size > 5 * 1024 * 1024) { toast.error("Max 5MB"); return; }
+              if (file.size > 10 * 1024 * 1024) { toast.error("Max 10MB"); return; }
               setUploading(true);
               try {
                 const ext = file.name.split(".").pop() || "jpg";
