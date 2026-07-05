@@ -19,7 +19,17 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState<string>("/resume.pdf");
   const location = useLocation();
+
+  useEffect(() => {
+    supabase
+      .from("site_settings")
+      .select("value")
+      .eq("key", "resume_url")
+      .maybeSingle()
+      .then(({ data }) => { if (data?.value) setResumeUrl(data.value); });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
