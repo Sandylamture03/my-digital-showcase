@@ -28,6 +28,7 @@ export default function AdminPostEditor() {
 
   const [loading, setLoading] = useState(!isNew);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [slugTouched, setSlugTouched] = useState(false);
@@ -107,8 +108,48 @@ export default function AdminPostEditor() {
         <Textarea id="excerpt" value={excerpt} onChange={(e) => setExcerpt(e.target.value)} rows={3} placeholder="Short summary shown in listings and previews" />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="cover">Cover image URL</Label>
-        <Input id="cover" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} placeholder="https://…" />
+        <Label htmlFor="cover">Cover image</Label>
+        <div className="flex gap-2">
+          <Input id="cover" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} placeholder="https://… or upload below" />
+          {coverImage && (
+            <Button type="button" variant="ghost" onClick={() => setCoverImage("")}>Clear</Button>
+          )}
+        </div>
+        <div className="flex items-center gap-3">
+          <input
+            id="cover-file"
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={async (e) => {
+              const file = e.target.files?.[0];
+              e.target.value = "";
+              if (!file) return;
+              if (file.size > 5 * 1024 * 1024) { toast.error("Max 5MB"); return; }
+              setUploading(true);
+              try {
+                const ext = file.name.split(".").pop() || "jpg";
+                const path = `${crypto.randomUUID()}.${ext}`;
+                const { error: upErr } = await supabase.storage.from("blog-covers").upload(path, file, { contentType: file.type });
+                if (upErr) throw upErr;
+                const { data, error: urlErr } = await supabase.storage.from("blog-covers").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+                if (urlErr) throw urlErr;
+                setCoverImage(data.signedUrl);
+                toast.success("Cover uploaded");
+              } catch (err: any) {
+                toast.error(err.message ?? "Upload failed");
+              } finally {
+                setUploading(false);
+              }
+            }}
+          />
+          <Button type="button" variant="secondary" disabled={uploading} onClick={() => document.getElementById("cover-file")?.click()}>
+            {uploading ? "Uploading…" : "Upload image"}
+          </Button>
+          {coverImage && (
+            <img src={coverImage} alt="Cover preview" className="h-16 w-28 object-cover rounded-md border border-border" />
+          )}
+        </div>
       </div>
       <div className="space-y-2">
         <Label htmlFor="tags">Tags (comma-separated)</Label>
