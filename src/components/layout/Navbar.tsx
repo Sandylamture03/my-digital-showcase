@@ -89,7 +89,7 @@ const Navbar = () => {
             className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
             asChild
           >
-            <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
+            <a href={resumeUrl} download="Sandeep_Lamture_Resume.pdf" target="_blank" rel="noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -134,7 +134,7 @@ const Navbar = () => {
                 className="bg-gradient-to-r from-primary to-accent hover:opacity-90 flex-1"
                 asChild
               >
-                <a href="/resume.pdf" download="Sandeep_Lamture_Resume.pdf">
+                <a href={resumeUrl} download="Sandeep_Lamture_Resume.pdf" target="_blank" rel="noreferrer">
                   <Download className="w-4 h-4 mr-2" />
                   Resume
                 </a>
