@@ -120,25 +120,28 @@ const HeroSection = () => {
           <div className="flex items-center justify-center gap-6">
             <a
               href="mailto:sandylamture03@gmail.com"
+              aria-label="Email Sandeep Lamture"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              <Mail size={24} />
+              <Mail size={24} aria-hidden="true" />
             </a>
             <a
               href="https://www.linkedin.com/in/sandeep-lamture-00ba4779/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Sandeep Lamture on LinkedIn"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              <Linkedin size={24} />
+              <Linkedin size={24} aria-hidden="true" />
             </a>
             <a
               href="https://github.com/Sandylamture03"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Sandeep Lamture on GitHub"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              <Github size={24} />
+              <Github size={24} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -146,9 +149,10 @@ const HeroSection = () => {
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <button
             onClick={() => scrollToSection("about")}
+            aria-label="Scroll to About section"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
-            <ArrowDown size={32} />
+            <ArrowDown size={32} aria-hidden="true" />
           </button>
         </div>
       </div>
