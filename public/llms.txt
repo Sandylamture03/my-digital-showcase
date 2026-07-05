@@ -1,0 +1,14 @@
+# Sandeep Lamture — Full Stack Developer
+
+> Portfolio of Sandeep Lamture, a React and full-stack developer with 4+ years of experience building high-performance web applications.
+
+Sandeep Lamture is a React Developer and Frontend Engineer specializing in React, TypeScript, Node.js, and modern web technologies. This site showcases his projects, experience, and technical writing.
+
+## Pages
+
+- [Home](/): Overview, about, experience at TCS, featured projects, and contact info.
+- [Blog](/blog): Articles and tutorials on React, TypeScript, and modern web development.
+
+## Optional
+
+- [Resume (PDF)](/resume.pdf): Downloadable résumé.
