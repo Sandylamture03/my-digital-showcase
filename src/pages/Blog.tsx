@@ -118,9 +118,12 @@ const Blog = () => {
                       ))}
                     </div>
 
-                    <div className="flex items-center text-primary text-sm font-medium">
-                      Read more
-                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div
+                      className="flex items-center text-primary text-sm font-medium"
+                      aria-label={`Read full post: ${post.title}`}
+                    >
+                      Read full post
+                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   </div>
                 </Link>
