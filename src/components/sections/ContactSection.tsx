@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { PREFILL_EVENT } from "./ProjectScoper";
 import { Mail, Phone, MapPin, Send, Loader2, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,6 +48,14 @@ const ContactSection = () => {
     message: "",
     reason: "job",
   });
+  useEffect(() => {
+    const h = (e: Event) => {
+      const d = (e as CustomEvent<{ reason: Reason; message: string }>).detail;
+      setFormData((f) => ({ ...f, reason: d.reason, message: d.message }));
+    };
+    window.addEventListener(PREFILL_EVENT, h);
+    return () => window.removeEventListener(PREFILL_EVENT, h);
+  }, []);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleCopy = async (value: string, label: string) => {

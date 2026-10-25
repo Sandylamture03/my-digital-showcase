@@ -116,6 +116,24 @@ export type Database = {
         }
         Relationships: []
       }
+      scope_requests: {
+        Row: {
+          created_at: string
+          id: string
+          ip_hash: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_hash: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_hash?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           created_at: string

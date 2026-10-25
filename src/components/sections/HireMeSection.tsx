@@ -1,5 +1,6 @@
 import { Briefcase, Code2, Sparkles, LayoutDashboard, Download, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ProjectScoper from "./ProjectScoper";
 
 const services = [
   { icon: Code2, title: "React web apps", text: "Fast, accessible, production-ready front ends." },
@@ -51,6 +52,7 @@ const HireMeSection = () => (
           </Button>
         </div>
       </div>
+      <ProjectScoper />
     </div>
   </section>
 );
