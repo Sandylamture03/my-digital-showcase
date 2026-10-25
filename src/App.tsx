@@ -12,6 +12,17 @@ import Auth from "./pages/Auth";
 import AdminPosts from "./pages/admin/AdminPosts";
 import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import RequireAdmin from "./components/admin/RequireAdmin";
+import { useParams } from "react-router-dom";
+
+// Old shared resume links (/assets/...resume...pdf) go to the current resume.
+const ResumeRedirect = () => {
+  const { file = "" } = useParams();
+  if (/resume/i.test(file) && /\.pdf$/i.test(file)) {
+    window.location.replace("/resume.pdf");
+    return null;
+  }
+  return <NotFound />;
+};
 
 const queryClient = new QueryClient();
 
@@ -30,6 +41,7 @@ const App = () => (
             <Route path="/admin" element={<RequireAdmin><AdminPosts /></RequireAdmin>} />
             <Route path="/admin/posts/:id" element={<RequireAdmin><AdminPostEditor /></RequireAdmin>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/assets/:file" element={<ResumeRedirect />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
