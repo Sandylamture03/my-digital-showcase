@@ -95,5 +95,38 @@ Budget range: ${b.budget || "not specified"}`;
     },
   } as Parameters<typeof streamText>[0]);
 
-  return withLovableAiGatewayRunIdHeader(result.toTextStreamResponse(), runIdFetch, corsHeaders);
+  // Wait for the first piece of output so gateway errors become real HTTP statuses.
+  const reader = result.textStream[Symbol.asyncIterator]();
+  let first: IteratorResult<string>;
+  try {
+    first = await reader.next();
+  } catch (_e) {
+    first = { done: true, value: undefined } as IteratorResult<string>;
+  }
+  if (first.done && upstreamError) {
+    const st = (upstreamError as { status: number }).status;
+    if (st === 429) return json(429, "The AI is busy right now. Please try again in a minute.");
+    if (st === 402) return json(402, "The AI scoping tool is temporarily unavailable. Please contact Sandeep directly.");
+    if (st === 403) return json(403, "The AI scoping tool is temporarily unavailable. Please contact Sandeep directly.");
+    return json(502, "Something went wrong generating your scope. Please try again later.");
+  }
+  const enc = new TextEncoder();
+  const body = new ReadableStream({
+    async start(controller) {
+      try {
+        if (!first.done) controller.enqueue(enc.encode(first.value));
+        while (true) {
+          const n = await reader.next();
+          if (n.done) break;
+          controller.enqueue(enc.encode(n.value));
+        }
+      } catch (_e) { /* stream ended early */ }
+      controller.close();
+    },
+  });
+  return withLovableAiGatewayRunIdHeader(
+    new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } }),
+    runIdFetch,
+    corsHeaders,
+  );
 });
