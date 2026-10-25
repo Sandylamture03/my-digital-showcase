@@ -53,6 +53,8 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const body = await req.json();
     const { name, email, message } = body as ContactEmailRequest;
+    const reasonLabels: Record<string,string> = { job: "Job opportunity", freelance: "Freelance project", other: "Other" };
+    const reasonLabel = reasonLabels[body?.reason] ?? "Not specified";
 
     console.log("Received contact form submission:", { name, email, messageLength: message?.length });
 
@@ -78,11 +80,12 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["sandylamture03@gmail.com"],
-      subject: `New Contact Form Submission from ${safeName}`,
+      subject: `[${reasonLabel}] New message from ${safeName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #6366f1;">New Contact Form Submission</h2>
           <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0 0 10px 0;"><strong>Reason:</strong> ${reasonLabel}</p>
             <p style="margin: 0 0 10px 0;"><strong>Name:</strong> ${safeName}</p>
             <p style="margin: 0 0 10px 0;"><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
             <p style="margin: 0;"><strong>Message:</strong></p>
