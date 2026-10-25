@@ -1,67 +1,34 @@
-## Goal
-Add a protected admin interface for managing blog posts (`blog_posts` table) with a rich text editor and side-by-side preview.
+# Plan: Get job offers and freelance clients from the portfolio
 
-## Scope
-The `blog_posts` table already exists with admin-only write policies gated by `has_role(auth.uid(), 'admin')`. It currently has no UI to write to it. This plan adds authentication, an admin dashboard, and an editor.
+Goal: recruiters, hiring managers and founders land on the portfolio, trust the work, and get in touch.
 
-## New routes
-- `/auth` — email/password sign-in (no public sign-up, to avoid strangers creating accounts)
-- `/admin` — dashboard listing all posts (draft + published) with edit/delete/new buttons
-- `/admin/posts/new` — editor for a new post
-- `/admin/posts/:id` — editor for existing post
+## Step 1 — Fix what hurts trust (on the site)
+- Project "Source" links: all six currently open GitHub "page not found". You give me the correct public repo links, or I hide the Source button for private projects.
+- Old resume links (/assets/Sandeep_Lamture_Resume.pdf and similar) show the 404 page. Point them to the current resume.
+- One title everywhere: use "React & AI Full Stack Developer" in the top section, page title and AI-agent profile, so it matches LinkedIn and GitHub (you update those two yourself).
 
-All `/admin/*` routes wrapped in a `RequireAdmin` guard that checks the current session and `has_role` before rendering; redirects to `/auth` otherwise.
+## Step 2 — Make it clear you're hireable (on the site)
+- Change "Available for opportunities" badge to say exactly what you're open to: "Open to full-time roles & freelance projects".
+- Add a short "Hire me / Work with me" block above Contact, with two paths:
+  - Recruiters: download resume, LinkedIn, notice period/location (you confirm the details).
+  - Freelance: 3 services you offer (e.g. React web apps, AI-powered features, dashboards), with "Start a project" button.
+- Contact form gets a "Reason" dropdown (Job opportunity / Freelance project / Other), saved with the message and shown in your email, so you can see which audience writes in.
 
-## Editor UI (`BlogPostEditor` component)
-Two-column layout on desktop, tabs on mobile:
+## Step 3 — Show proof
+- Add a short case-study write-up to LinkedAgent and JobTrail: problem, what you built, tech choices, result. Uses real screenshots you provide. LinkedAgent stack fixed to Gemini (the live app says Gemini; the portfolio says OpenAI).
 
-**Left — form**
-- Title (auto-slugifies to the slug field; slug remains editable)
-- Excerpt (textarea)
-- Cover image URL
-- Tags (comma-separated input → string[])
-- Published toggle
-- Content: rich text editor
-- Save / Save & publish / Delete / Cancel buttons
+## Step 4 — Outreach (you do this, I draft)
+- Draft messages to 10 people you already know (ex-colleagues from TCS/Randstad, recruiters, founders), plus a LinkedIn post announcing you're open to work, with tracked links (utm_source=linkedin).
+- Optional next: talk at React Pune, launch JobTrail on Peerlist.
 
-**Right — live preview**
-Renders exactly like the public `/blog/:slug` page using the current form state, so the author sees the final look while typing.
+## Needed from you
+- Correct public GitHub links (or which are private).
+- Full-time + freelance details: location/remote, notice period, freelance services.
+- Screenshots of LinkedAgent and JobTrail.
 
-## Rich text editor
-Use **Tiptap** (`@tiptap/react`, `@tiptap/starter-kit`, `@tiptap/extension-link`, `@tiptap/extension-image`, `@tiptap/extension-placeholder`). It's the standard React rich-text stack, works cleanly with shadcn styling, and outputs HTML we can store in `content` and render on the public post page.
-
-Toolbar: bold, italic, strike, H2/H3, bullet list, ordered list, blockquote, code block, link, image (by URL), undo/redo.
-
-Content stored as HTML string in the existing `content` column (text). `BlogPost.tsx` currently renders content as plain text/markdown; it will be updated to render the stored HTML inside the existing prose container.
-
-## Auth
-Enable Supabase email/password auth. Only accounts explicitly granted the `admin` role in `user_roles` reach `/admin` — a signed-in non-admin sees an "access denied" state. Because there's no public sign-up form, admin accounts are provisioned by inserting into `user_roles` (one-time seed migration will grant the first admin role to a user id the user provides, or we surface a small "make me admin" helper the first time).
-
-## Data flow
-- List: `select *` (admin-only policy already covers drafts).
-- Create: `insert` with title, slug, excerpt, content, cover_image, tags, published.
-- Update: `update ... where id = ...`.
-- Delete: `delete ... where id = ...`.
-All go through the existing `@/integrations/supabase/client`.
-
-## Files
-New:
-- `src/pages/Auth.tsx`
-- `src/pages/admin/AdminPosts.tsx`
-- `src/pages/admin/AdminPostEditor.tsx`
-- `src/components/admin/RequireAdmin.tsx`
-- `src/components/admin/RichTextEditor.tsx` (Tiptap wrapper + toolbar)
-- `src/components/admin/PostPreview.tsx` (mirrors public post layout)
-
-Edited:
-- `src/App.tsx` — register new routes.
-- `src/pages/BlogPost.tsx` — render stored HTML via `dangerouslySetInnerHTML` inside the prose container (content originates from trusted admin authors).
-- `src/components/Header.tsx` (or nav) — add small "Admin" link visible only when signed in as admin (optional).
-
-## Out of scope
-- Image uploads to storage (URL-based images only for now; can add a storage bucket later).
-- Public sign-up, password reset flows, multi-author permissions.
-- Markdown import/export.
-
-## Verification
-After build: sign in as an admin user, create a draft post, toggle preview, publish it, confirm it appears on `/blog` and renders correctly at `/blog/:slug`; edit and delete round-trip; confirm a signed-out user hitting `/admin` is redirected to `/auth`.
+## Technical details
+- Add `reason` text column to `contact_submissions` (nullable, validated to the 3 values), include it in the send-contact-email function and MCP submit tool.
+- Update project `github_url` rows; hide Source button when null (ProjectsSection).
+- Add SPA redirects for old resume paths to the current `resume_url`.
+- New `HireMeSection` between Projects and Contact; edit HeroSection badge and title; update index.html/Helmet titles and get-profile MCP tool.
+- Case studies stored as extra fields or linked blog posts.
