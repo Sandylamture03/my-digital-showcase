@@ -75,7 +75,7 @@ Budget range: ${b.budget || "not specified"}`;
   let upstreamError: { status: number; message: string } | null = null;
   const result = streamText({
     model: provider.responses("openai/gpt-6-astra"),
-    instructions: INSTRUCTIONS,
+    system: INSTRUCTIONS,
     messages: [{ role: "user", content: prompt }],
     abortSignal: req.signal,
     maxRetries: 0,
