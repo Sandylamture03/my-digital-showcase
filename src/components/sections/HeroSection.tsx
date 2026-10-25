@@ -78,13 +78,13 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-6 inline-block">
             <span className="px-4 py-2 rounded-full glass text-sm text-primary">
-              Available for opportunities
+              Open to full-time roles & freelance projects
             </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Hi, I'm{" "}
-            <span className="gradient-text">Sandeep Lamture</span> — React Developer
+            <span className="gradient-text">Sandeep Lamture</span> — React & AI Full Stack Developer
           </h1>
 
           <div className="h-12 md:h-16 mb-8">

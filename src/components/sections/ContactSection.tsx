@@ -14,6 +14,8 @@ const contactSchema = z.object({
   message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000, "Message is too long"),
 });
 
+type Reason = "job" | "freelance" | "other";
+
 const contactInfo = [
   {
     icon: Mail,
@@ -39,10 +41,11 @@ const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{ name: string; email: string; message: string; reason: Reason }>({
     name: "",
     email: "",
     message: "",
+    reason: "job",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -82,23 +85,23 @@ const ContactSection = () => {
           name: result.data.name,
           email: result.data.email,
           message: result.data.message,
+          reason: formData.reason,
         },
       ]);
 
       if (dbError) throw dbError;
 
-      // Send email notification
       const { error: emailError } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: result.data.name,
           email: result.data.email,
           message: result.data.message,
+          reason: formData.reason,
         },
       });
 
       if (emailError) {
         console.error("Email notification failed:", emailError);
-        // Don't throw - form was still saved successfully
       }
 
       toast({
@@ -106,7 +109,7 @@ const ContactSection = () => {
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
 
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", reason: "job" });
     } catch (error) {
       toast({
         title: "Error",
@@ -185,6 +188,19 @@ const ContactSection = () => {
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
             <div className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="reason">Reason</Label>
+                <select
+                  id="reason"
+                  value={formData.reason}
+                  onChange={(e) => setFormData({ ...formData, reason: e.target.value as Reason })}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="job">Job opportunity</option>
+                  <option value="freelance">Freelance project</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
                 <Input

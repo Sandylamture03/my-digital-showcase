@@ -108,7 +108,8 @@ var get_profile_default = defineTool4({
   handler: () => {
     const profile = {
       name: "Sandeep Lamture",
-      title: "React Developer",
+      title: "React & AI Full Stack Developer",
+      availability: "Open to full-time roles and freelance projects",
       experience_years: 4,
       location: "Pune, Maharashtra, India",
       summary: "React Developer with 4+ years of experience building scalable, high-performance web applications. Currently at Tata Consultancy Services (TCS).",
