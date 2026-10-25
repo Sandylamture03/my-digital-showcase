@@ -1,0 +1,2 @@
+ALTER TABLE public.contact_submissions ADD COLUMN reason text;
+ALTER TABLE public.contact_submissions ADD CONSTRAINT contact_reason_check CHECK (reason IS NULL OR reason IN ('job','freelance','other'));

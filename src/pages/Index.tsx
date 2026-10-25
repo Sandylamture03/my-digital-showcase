@@ -7,18 +7,19 @@ import ExperienceSection from "@/components/sections/ExperienceSection";
 import EducationSection from "@/components/sections/EducationSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import HireMeSection from "@/components/sections/HireMeSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Sandeep Lamture — React & Full Stack Developer Portfolio</title>
+        <title>Sandeep Lamture — React & AI Full Stack Developer</title>
         <meta
           name="description"
-          content="Portfolio of Sandeep Lamture, a React and full-stack developer with 4+ years building high-performance web apps in TypeScript, Node.js, and Tailwind."
+          content="Sandeep Lamture, React & AI full stack developer in Pune with 4+ years. Open to full-time roles and freelance React and AI projects."
         />
         <link rel="canonical" href="https://portfolio.lamsan.online/" />
-        <meta property="og:title" content="Sandeep Lamture — React & Full Stack Developer Portfolio" />
+        <meta property="og:title" content="Sandeep Lamture — React & AI Full Stack Developer" />
         <meta property="og:url" content="https://portfolio.lamsan.online/" />
       </Helmet>
       <Navbar />
@@ -28,6 +29,7 @@ const Index = () => {
         <ExperienceSection />
         <EducationSection />
         <ProjectsSection />
+        <HireMeSection />
         <ContactSection />
       </main>
       <Footer />

@@ -10,7 +10,8 @@ export default defineTool({
   handler: () => {
     const profile = {
       name: "Sandeep Lamture",
-      title: "React Developer",
+      title: "React & AI Full Stack Developer",
+      availability: "Open to full-time roles and freelance projects",
       experience_years: 4,
       location: "Pune, Maharashtra, India",
       summary:
